@@ -1,0 +1,45 @@
+<!--
+ * @Author: Alex Zhang zhangyh_upc@qq.com
+ * @Date: 2023-07-20 15:20:50
+ * @LastEditors: Alex Zhang zhangyh_upc@qq.com
+ * @LastEditTime: 2023-11-14 15:41:37
+ * @FilePath: \auto_scan_system_frontend\src\app\login\login.component.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<mat-card class="background-image">
+  <div>
+    <img mat-card-image src="assets\img\pengCheng_logo_mid.png" class="logo-image">
+  </div>
+  <div>
+    <h1 class="title-style">电磁波近场扫描平台</h1>
+  </div>
+  <form [formGroup]="signinForm" (ngSubmit)="onSubmit()" class="form-style">
+    <h2 style="font-weight: bolder;">
+      <img mat-card-image src="assets\icon\user-regular.svg" class="icon-style">
+      用户登录
+    </h2>
+    <mat-form-field class="form-fill-style">
+      <img mat-card-image src="assets\icon\user-solid.svg" class="icon-fill-style">
+      用户名:
+      <div>
+        <input formControlName="userName" matInput name="userName" [(ngModel)]="userName" style="width: 90%;">
+        <img mat-card-image src="assets\icon\xmark-solid.svg" class="icon-fill-style" (click)="toRemoveUserName()">
+      </div>
+    </mat-form-field>
+    <mat-form-field class="form-fill-style">
+      <img mat-card-image src="assets\icon\lock-solid.svg" class="icon-fill-style">
+      密码:
+      <input formControlName="password" matInput name="password" [(ngModel)]="password"
+        [type]="isHide? 'text' : 'password'" style="width: 90%;">
+      <img mat-card-image [src]="isHide? 'assets\\icon\\eye-solid.svg' : 'assets\\icon\\eye-slash-solid.svg'"
+        class="icon-fill-style" (click)="toHidePassword()">
+    </mat-form-field>
+    <br>
+    <mat-action-row>
+      <button mat-raised-button name="save" type="submit" class="button-style">
+        登录
+      </button>
+    </mat-action-row>
+  </form>
+</mat-card>
+<h4 style="text-align: center;">技术支持：鹏城实验室 上海宽带技术及应用工程研究中心 北京大学 深圳大学</h4>

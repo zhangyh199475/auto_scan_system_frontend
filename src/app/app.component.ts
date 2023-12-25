@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'auto_scan_system_frontend';
+  title = '电磁波近场扫描平台';
 }

@@ -1,0 +1,41 @@
+<mat-card style="height: 100%;">
+  <div class="title-style">
+      <label>用户列表</label>
+  </div>
+  <div class="form-style">
+      <mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="userId">
+          <mat-header-cell *matHeaderCellDef>用户ID</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.userId}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="userName">
+          <mat-header-cell *matHeaderCellDef>用户名</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.userName}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="roleId">
+          <mat-header-cell *matHeaderCellDef>用户角色</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.roleId == 1 ? '管理员' : '普通用户'}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef>邮箱</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.email}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef>操作</mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <button mat-icon-button (click)="toAction(row)" name="update"  value="update" matTooltip="{{'查看' + row.userName + '信息'}}">
+              <img mat-card-image src="assets\icon\file-lines-solid.svg" class="icon-style">
+            </button>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-action-row>
+          <button mat-raised-button name="toAdd" type="button" (click)="toAdd()"
+              style="background-color: rgb(239, 246, 253); margin-top: 1%;">
+              新增用户
+          </button>
+      </mat-action-row>
+    </div>
+</mat-card>

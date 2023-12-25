@@ -1,0 +1,33 @@
+<!--
+ * @Author: Alex Zhang zhangyh_upc@qq.com
+ * @Date: 2023-07-20 15:20:41
+ * @LastEditors: Alex Zhang zhangyh_upc@qq.com
+ * @LastEditTime: 2023-09-05 10:40:43
+ * @FilePath: \auto_scan_system_frontend\src\app\header\header.component.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<mat-toolbar class="header-background">
+  <mat-toolbar-row>
+    <div style="padding-left: 1%; width: 42%;">
+      <img mat-card-image src="assets\img\pengCheng_logo_small.png">
+    </div>
+    <div style="width: 32%;">
+      <h1 style="font-family: PingFang Heavy; font-size: x-large;">
+        电磁波近场扫描平台
+      </h1>
+    </div>
+    <div style="width: 10%;">
+      <h6 style="font-family: PingFang Bold; font-size: large;">
+        您好, {{user.userName}}
+      </h6>
+    </div>
+    <div>
+      <button mat-icon-button name="userInfo" type="button" class="button-style" (click)="onUserInfo()" matTooltip="个人信息">
+        <img mat-card-image src="assets\icon\user-solid.svg" class="icon-style">
+      </button>
+      <button mat-icon-button name="logout" type="button" class="button-style" (click)="onLogout()" matTooltip="用户注销">
+        <img mat-card-image src="assets\icon\right-to-bracket-solid.svg" class="icon-style">
+      </button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

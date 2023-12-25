@@ -1,0 +1,47 @@
+<mat-card style="height: 100%">
+    <app-header></app-header>
+    <mat-sidenav-container>
+      <mat-sidenav  #sidenav mode="side" opened class="mat-sidenav">
+        <mat-nav-list>
+          <div class="side-menu">
+            <ng-container>
+              <a mat-list-item routerLink="/home/origin-init">
+              原点初始化
+            </a>
+            </ng-container>
+          </div>
+          <div class="side-menu">
+            <ng-container>
+              <a mat-list-item routerLink="/home/task-set">
+              任务设置
+            </a>
+            </ng-container>
+          </div>
+          <div class="side-menu">
+            <ng-container>
+              <a mat-list-item routerLink="/home/s-para">
+              S参数获取
+            </a>
+            </ng-container>
+          </div>
+          <div class="side-menu">
+            <ng-container>
+              <a mat-list-item routerLink="/home/task-history">
+              任务历史
+            </a>
+            </ng-container>
+          </div>
+          <div class="side-menu" *ngIf="userMapping">
+            <ng-container>
+              <a mat-list-item routerLink="/home/user">
+              用户
+            </a>
+            </ng-container>
+          </div>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </mat-card>

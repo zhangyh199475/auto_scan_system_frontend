@@ -1,0 +1,40 @@
+.mat-sidenav {
+  background-color: white;
+  width: 8%;
+  border-right-style: inset;
+  border-width: 2px;
+}
+
+.mat-expansion-panel {
+  background-color: white;
+}
+
+.mat-sidenav-container {
+  height: 90%;
+}
+
+.mat-list-base {
+  padding-top: 0px;
+}
+
+.mat-list-item.active {
+  border-bottom: 4px solid #006564;
+  color: #006564;
+}
+
+.mat-expansion-panel-header {
+  font-size: 16px;
+}
+
+.menu-header-link {
+  padding-left: 8px;
+  color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.side-menu {
+  height: 60px;
+  text-align: center;
+  display: flex;
+  border-bottom-style: inset;
+  border-width: 1px;
+}

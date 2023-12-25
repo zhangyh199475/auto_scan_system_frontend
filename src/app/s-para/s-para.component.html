@@ -1,0 +1,39 @@
+<mat-card style="height: 100%;">
+  <div class="title-style">
+      <label>S参数获取</label>
+  </div>
+  <mat-action-row style="margin-left: 3%;">
+      <button mat-raised-button name="backToOrigin" type="button" (click)="backToOrigin()"
+          style="background-color: rgb(239, 246, 253);">
+          回到原点
+      </button>
+  </mat-action-row>
+  <form [formGroup]="sParaForm" (ngSubmit)="onStart()" class="form-style">
+      <div style="margin-top: 1%;">
+          <button mat-raised-button name="onStart" type="submit" class="confirm-button">
+              获取S参数
+          </button>
+      </div>
+      <div style="margin-top: 1%;">
+          <label>保存文件夹:
+              {{saveFolder}}
+          </label>
+      </div>
+      <div style="margin-top: 1%;">
+          <label>保存文件名:
+              <input formControlName="saveFile" matInput name="saveFile" [(ngModel)]="saveFile" style="width: 10%;">
+          </label>
+      </div>
+      <div style="margin-top: 1%;">
+          <label>文件路径:
+              {{savePath}}
+          </label>
+      </div>
+      <div style="margin-top: 1%;">
+          <label>发送邮件地址:
+              <input formControlName="sendEmail" matInput name="sendEmail" [(ngModel)]="sendEmail"
+                  style="width: 10%;">
+          </label>
+      </div>
+  </form>
+</mat-card>

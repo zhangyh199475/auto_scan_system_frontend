@@ -1,0 +1,129 @@
+<mat-card style="height: 100%;">
+  <div class="title-style">
+      <label>任务设置</label>
+  </div>
+  <mat-action-row style="margin-left: 3%;">
+      <button mat-raised-button name="backToOrigin" type="button" (click)="backToOrigin()"
+          style="background-color: rgb(239, 246, 253);">
+          回到原点
+      </button>
+  </mat-action-row>
+  <form [formGroup]="setForm" class="form-style">
+      <div style="margin-top: 1%;">
+          <mat-form-field>
+              <mat-label>扫描平面</mat-label>
+              <mat-select formControlName="scanSurface" name="scanSurface" [(ngModel)]="scanSurface" (ngModelChange)="onChangeScanSurface()">
+                  <mat-option value="xOy" selected>xOy</mat-option>
+                  <mat-option value="xOz">xOz</mat-option>
+                  <mat-option value="yOz">yOz</mat-option>
+              </mat-select>
+          </mat-form-field>
+
+          <mat-form-field style="margin-left: 10%;">
+              <mat-label>S参数模式</mat-label>
+              <mat-select formControlName="sPara" name="sPara" [(ngModel)]="sPara">
+                  <mat-option value="S11">S11</mat-option>
+                  <mat-option value="S12" selected>S12</mat-option>
+                  <mat-option value="S21">S21</mat-option>
+                  <mat-option value="S22">S22</mat-option>
+              </mat-select>
+          </mat-form-field>
+
+
+          <mat-form-field style="margin-left: 10%;">
+              <mat-label>重复采集次数</mat-label>
+              <input formControlName="scanTime" matInput name="scanTime" [(ngModel)]="scanTime" type="number" min="1">
+          </mat-form-field>
+      </div>
+
+      <div style="margin-top: 1%;">
+          <mat-form-field>
+              <mat-label>{{'坐标' + scanSurface.substring(0,1).toUpperCase() + '最小值'}}</mat-label>
+              <input formControlName="aMin" matInput name="aMin" [(ngModel)]="aMin" type="number" min="-100" max="100">
+              <mat-hint>最小值: {{aMinRange}}</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field style="margin-left: 10%;">
+              <mat-label>{{'坐标' + scanSurface.substring(0,1).toUpperCase() + '最大值'}}</mat-label>
+              <input formControlName="aMax" matInput name="aMax" [(ngModel)]="aMax" type="number" min="-100" max="100">
+              <mat-hint>最大值: {{aMaxRange}}</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field style="margin-left: 10%;">
+              <mat-label>{{'坐标' + scanSurface.substring(0,1).toUpperCase() + '步长'}}</mat-label>
+              <input formControlName="aStep" matInput name="aStep" [(ngModel)]="aStep" type="number" min="0" max="aMax - aMin">
+          </mat-form-field>
+      </div>
+
+      <div style="margin-top: 1%;">
+          <mat-form-field>
+              <mat-label>{{'坐标' + scanSurface.substring(2).toUpperCase() + '最小值'}}</mat-label>
+              <input formControlName="bMin" matInput name="bMin" [(ngModel)]="bMin" type="number" min="-100" max="100">
+              <mat-hint>最小值: {{bMinRange}}</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field style="margin-left: 10%;">
+              <mat-label>{{'坐标' + scanSurface.substring(2).toUpperCase() + '最大值'}}</mat-label>
+              <input formControlName="bMax" matInput name="bMax" [(ngModel)]="bMax" type="number" min="-100" max="100">
+              <mat-hint>最大值: {{bMaxRange}}</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field style="margin-left: 10%;">
+              <mat-label>{{'坐标' + scanSurface.substring(2).toUpperCase() + '步长'}}</mat-label>
+              <input formControlName="bStep" matInput name="bStep" [(ngModel)]="bStep" type="number">
+          </mat-form-field>
+      </div>
+
+      <div style="margin-top: 1%;">
+          <mat-form-field>
+              <mat-label>频率F最小值(GHZ)</mat-label>
+              <input formControlName="freqMin" matInput name="freqMin" [(ngModel)]="freqMin" type="number">
+          </mat-form-field>
+
+          <mat-form-field style="margin-left: 10%;">
+              <mat-label>频率F最大值(GHZ)</mat-label>
+              <input formControlName="freqMax" matInput name="freqMax" [(ngModel)]="freqMax" type="number">
+          </mat-form-field>
+
+          <mat-form-field style="margin-left: 10%;">
+              <mat-label>频率F步长(GHZ)</mat-label>
+              <input formControlName="freqStep" matInput name="freqStep" [(ngModel)]="freqStep" type="number">
+          </mat-form-field>
+      </div>
+
+      <div style="margin-top: 1%;">
+          <mat-form-field>
+              <mat-label>保存文件名</mat-label>
+              <input formControlName="saveFile" matInput name="saveFile" [(ngModel)]="saveFile"
+                  (change)="onFileNameChange()">
+          </mat-form-field>
+          <mat-form-field style="margin-left: 10%;">
+              <mat-label>发送邮件地址</mat-label>
+              <input formControlName="sendEmail" matInput name="sendEmail" [(ngModel)]="sendEmail" placeholder="eg:abc@def.com">
+          </mat-form-field>
+
+          <mat-label style="margin-left: 10%;">文件路径:{{savePath}}</mat-label>
+      </div>
+
+      <div style="margin-top: 1%;">
+          <mat-label>[当前模式]:</mat-label>
+          <mat-label>{{mode === 1 ? '预检' : '扫描'}}</mat-label>
+          <mat-label style="margin-left: 10%;">[当前状态]:</mat-label>
+          <mat-label>{{state}}</mat-label>
+          <mat-label style="margin-left: 10%;">[当前进度]:</mat-label>
+          <mat-label>{{process}}%</mat-label>
+          <mat-label style="margin-left: 10%;">[剩余时间]:</mat-label>
+          <mat-label>{{leftTimeHour}} : {{leftTimeMinute}} : {{leftTimeSecond}}</mat-label>
+      </div>
+
+      <div style="margin-top: 2%;">
+          <button mat-raised-button name="onCheck" type="button" (click)="onCheck()" class="confirm-button" [disabled]="isNotReady">
+              预检
+          </button>
+          <button mat-raised-button name="onScan" type="button" (click)="onScan()" class="confirm-button"
+              style="margin-left: 2%;" [disabled]="isNotReady">
+              扫描
+          </button>
+      </div>
+  </form>
+</mat-card>

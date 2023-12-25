@@ -1,0 +1,54 @@
+.background-image {
+  background-image: url(../../assets/img/pengcheng_background.jpg);
+  height: auto;
+  background-size: cover;
+  width: auto;
+  background-position: center;
+  min-height: 95%;
+}
+
+.logo-image {
+  margin-top: 1%;
+  margin-left: 1%;
+}
+
+.form-style {
+  background-color: white;
+  max-width: 20%;
+  padding: 1% 1% 1% 2%;
+  margin: 1% 12% 10% 70%;
+  border: 1px solid rgb(20, 40, 100);
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(213, 26, 26, 0.05);
+  justify-content: center;
+  background: linear-gradient(to bottom,  rgba(94, 154, 194, 0) 18%,rgb(255, 255, 255) 100%);
+}
+
+.form-fill-style {
+  width: 90%;
+}
+
+.title-style {
+  font-weight: bolder;
+  margin-top: 2%;
+  margin-left: 7%;
+  font-size: xx-large;
+}
+
+.button-style {
+  width: 25%;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-color: whitesmoke !important;
+}
+
+.icon-style {
+  width: 24px;
+  margin: 0% 2% 0% 0%;
+  top: 3px;
+}
+
+.icon-fill-style {
+  width: 15px;
+  margin: 0% 1% 0% 0%;
+  top: 2px;
+}

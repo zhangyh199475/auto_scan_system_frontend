@@ -1,0 +1,51 @@
+<mat-card style="height: 100%;">
+  <div class="title-style">
+      <label>{{user.userId == -1 ? '新增用户' : '用户信息'}}</label>
+  </div>
+  <mat-action-row style="margin-left: 3%;">
+      <button mat-raised-button name="back" type="button" (click)="goBack()"
+          style="background-color: rgb(239, 246, 253);">
+          返回
+      </button>
+  </mat-action-row>
+  <div class="form-style">
+      <form [formGroup]="userDetailForm" (ngSubmit)="goUpdate()" class="form-style">
+          <div style="margin-top: 1%;">
+              <mat-form-field>
+                  <mat-label>用户名</mat-label>
+                  <input formControlName="userName" matInput name="userName" [(ngModel)]="userName">
+              </mat-form-field>
+              <mat-form-field style="margin-left: 5%;" *ngIf="isLoginUser">
+                  <mat-label>密码</mat-label>
+                  <input formControlName="password" matInput name="password" [(ngModel)]="password" [type]="isHide? 'text' : 'password'" style="width: 90%;">
+                  <img mat-card-image [src]="isHide? 'assets\\icon\\eye-solid.svg' : 'assets\\icon\\eye-slash-solid.svg'" class = "icon-fill-style" (click)="toHidePassword()">
+              </mat-form-field>
+          </div>
+          <div style="margin-top: 1%;">
+              <mat-form-field>
+                  <mat-label>用户角色</mat-label>
+                  <mat-select formControlName="roleId" name="roleId" [(ngModel)]="roleId" [(value)]="roleId">
+                      <mat-option [value]="1">管理员</mat-option>
+                      <mat-option [value]="2">普通用户</mat-option>
+                  </mat-select>
+              </mat-form-field>
+              <mat-form-field style="margin-left: 5%;">
+                  <mat-label>邮箱</mat-label>
+                  <input formControlName="email" matInput name="email" [(ngModel)]="email">
+              </mat-form-field>
+          </div>
+          <div style="margin-top: 1%;">
+              <button mat-raised-button name="add" type="button" (click)="goAdd()" class="confirm-button" *ngIf="userId == -1">
+                  确定
+              </button>
+              <button mat-raised-button name="update" type="button" (click)="goUpdate()" class="confirm-button" *ngIf="userId != -1">
+                  更新
+              </button>
+              <button mat-raised-button name="delete" type="button" (click)="goDelete()" class="confirm-button" *ngIf="userId != -1" style="margin-left: 2%;">
+                  删除
+              </button>
+          </div>
+      </form>
+  </div>
+
+</mat-card>

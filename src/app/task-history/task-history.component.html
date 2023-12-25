@@ -1,0 +1,128 @@
+<mat-card style="height: 100%;">
+  <div class="title-style">
+      <label>任务历史</label>
+  </div>
+  <div class="form-style">
+      <mat-table [dataSource]="dataSource" class="table-style" cdk-scrollable>
+          <ng-container matColumnDef="taskId">
+              <mat-header-cell *matHeaderCellDef>任务ID</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.taskId}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="type">
+              <mat-header-cell *matHeaderCellDef>类型</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.type}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="state">
+              <mat-header-cell *matHeaderCellDef>状态</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.state}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="saveFile">
+              <mat-header-cell *matHeaderCellDef>保存文件名</mat-header-cell>
+              <mat-cell *matCellDef="let row" matTooltip="{{row.saveFile}}">{{row.saveFile}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="createdTime">
+              <mat-header-cell *matHeaderCellDef>开始时间</mat-header-cell>
+              <mat-cell *matCellDef="let row" matTooltip="{{row.createdTime | date : 'yyyy-MM-dd HH:mm:ss'}}">{{row.createdTime | date : 'yyyy-MM-dd HH:mm:ss'}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="finishTime">
+              <mat-header-cell *matHeaderCellDef>完成时间</mat-header-cell>
+              <mat-cell *matCellDef="let row" matTooltip="{{row.finishTime | date : 'yyyy-MM-dd HH:mm:ss'}}">{{row.finishTime | date : 'yyyy-MM-dd HH:mm:ss'}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="download">
+              <mat-header-cell *matHeaderCellDef>结果下载</mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                  <button mat-icon-button (click)="toDownload(row.saveFile)" name="toDownload" value="toDownload">
+                      <img mat-card-image src="assets\icon\circle-down-regular.svg" class="icon-style" title="结果下载">
+                  </button>
+              </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="retry">
+              <mat-header-cell *matHeaderCellDef>重做实验</mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                  <button mat-icon-button (click)="toRetry()" name="toRetry" value="toRetry">
+                      <img mat-card-image src="assets\icon\rotate-right-solid.svg" class="icon-style" title="重做实验">
+                  </button>
+              </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="sendEmail">
+              <mat-header-cell *matHeaderCellDef>发送邮箱</mat-header-cell>
+              <mat-cell *matCellDef="let row" matTooltip="{{row.sendEmail}}">{{row.sendEmail}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="anglePosition">
+              <mat-header-cell *matHeaderCellDef>夹角</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.anglePosition}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="xPosition">
+              <mat-header-cell *matHeaderCellDef>x</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.xPosition}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="yPosition">
+              <mat-header-cell *matHeaderCellDef>y</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.yPosition}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="zPosition">
+              <mat-header-cell *matHeaderCellDef>z</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.zPosition}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="uPosition">
+              <mat-header-cell *matHeaderCellDef>u</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.uPosition}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="vPosition">
+              <mat-header-cell *matHeaderCellDef>v</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.vPosition}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="wPosition">
+              <mat-header-cell *matHeaderCellDef>w</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.wPosition}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="scanSurface">
+              <mat-header-cell *matHeaderCellDef>扫描平面</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.scanSurface}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="sPara">
+              <mat-header-cell *matHeaderCellDef>S参数模式</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.sPara}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="aMin">
+              <mat-header-cell *matHeaderCellDef>A平面最小值</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.aMin}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="aMax">
+              <mat-header-cell *matHeaderCellDef>A平面最大值</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.aMax}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="aStep">
+              <mat-header-cell *matHeaderCellDef>A平面步长</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.aStep}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="bMin">
+              <mat-header-cell *matHeaderCellDef>B平面最大值</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.bMin}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="bMax">
+              <mat-header-cell *matHeaderCellDef>B平面最大值</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.bMax}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="bStep">
+              <mat-header-cell *matHeaderCellDef>B平面步长</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.bStep}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="freqMin">
+              <mat-header-cell *matHeaderCellDef>频率最小值</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.freqMin}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="freqMax">
+              <mat-header-cell *matHeaderCellDef>频率最大值</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.freqMax}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="freqStep">
+              <mat-header-cell *matHeaderCellDef>频率步长</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.freqStep}}</mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+  </div>
+</mat-card>
